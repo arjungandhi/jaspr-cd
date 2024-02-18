@@ -1,0 +1,68 @@
+argo-cd:
+  dex:
+    enabled: false
+  notifications:
+    enabled: false
+  ## Argo Configs
+  configs:
+    # General Argo CD configuration
+    ## Ref: https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/argocd-cm.yaml
+    cm:
+      # application namespaces
+      application.namespaces: "*"
+  
+      ## Ref: https://argo-cd.readthedocs.io/en/latest/operator-manual/rbac/#exec-resource
+      exec.enabled: true
+  
+      # -- Enable local admin user
+      ## Ref: https://argo-cd.readthedocs.io/en/latest/faq/#how-to-disable-admin-user
+      admin.enabled: false
+  
+      # anonymus access to ui
+      users.anonymous.enabled: true
+  
+    # Argo CD configuration parameters
+    ## Ref: https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/argocd-cmd-params-cm.yaml
+    params:
+      ## Server properties
+      # -- Run server without TLS
+      server.insecure: true
+      # -- Disable Argo CD RBAC for user authentication
+      server.disable.auth: false
+  
+    # Argo CD RBAC policy configuration
+    ## Ref: https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/rbac.md
+    rbac:
+      # -- The name of the default role which Argo CD will falls back to, when authorizing API requests (optional).
+      # If omitted or empty, users may be still be able to login, but will see no apps, projects, etc...
+      policy.default: 'role:admin'
+  
+  ## Server
+  server:
+    # -- Argo CD server name
+    name: server
+  
+    ingress:
+      # -- Enable an ingress resource for the Argo CD server
+      enabled: true
+      # -- Additional ingress annotations
+      annotations: 
+        # cert-manager annotations
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+      # -- Additional ingress labels
+      labels: {}
+      # -- Defines which ingress controller will implement the resource
+      ingressClassName: ""
+  
+      # -- List of ingress hosts
+      ## Argo Ingress.
+      ## Hostnames must be provided if Ingress is enabled.
+      ## Secrets must be manually created in the namespace
+      hosts: 
+        - cd.infra.in.arjungandhi.com
+  
+      # -- Ingress TLS configuration
+      # tls:
+      #   - secretName: monkey.argocd.tls
+      #     hosts:
+      #       - argo.in.arjungandhi.com

@@ -1,0 +1,13 @@
+apiVersion: v2
+name: Jaspr CD
+description: CD for Jaspr
+type: application
+
+version: 0.1.0
+
+appVersion: latest
+
+dependencies:
+- name: argo-cd
+  version: "6.1.0"
+  repository: "https://argoproj.github.io/argo-helm/"
