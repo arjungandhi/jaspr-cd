@@ -59,7 +59,7 @@ argo-cd:
       ## Hostnames must be provided if Ingress is enabled.
       ## Secrets must be manually created in the namespace
       hosts: 
-        - cd.infra.monkeylabs.cloud
+        - cd.infra.gandhi.wtf
   
       # -- Ingress TLS configuration
       # tls:
