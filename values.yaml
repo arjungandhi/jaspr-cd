@@ -59,8 +59,4 @@ argo-cd:
       # -- Defines which ingress controller will implement the resource
       ingressClassName: ""
   
-      # -- Ingress TLS configuration
-      tls:
-        - secretName: monkey.argocd.tls
-          hosts:
-            - argo.in.arjungandhi.com
+      tls: true
