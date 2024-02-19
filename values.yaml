@@ -1,7 +1,7 @@
 global:
   # -- Default domain used by all components
   ## Used for ingresses, certificates, SSO, notifications, etc.
-  domain: argo.infra.gandhi.wtf
+  domain: "argo.infra.gandhi.wtf"
 
 argo-cd:
   dex:
@@ -46,17 +46,9 @@ argo-cd:
   server:
     # -- Argo CD server name
     name: server
-  
     ingress:
-      # -- Enable an ingress resource for the Argo CD server
       enabled: true
-      # -- Additional ingress annotations
       annotations: 
-        # cert-manager annotations
         cert-manager.io/cluster-issuer: letsencrypt-prod
-      # -- Additional ingress labels
-      labels: {}
-      # -- Defines which ingress controller will implement the resource
-      ingressClassName: ""
-  
+      hostname: argo.infra.gandhi.wtf
       tls: true
