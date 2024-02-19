@@ -1,3 +1,8 @@
+global:
+  # -- Default domain used by all components
+  ## Used for ingresses, certificates, SSO, notifications, etc.
+  domain: argo.infra.gandhi.wtf
+
 argo-cd:
   dex:
     enabled: false
@@ -54,15 +59,8 @@ argo-cd:
       # -- Defines which ingress controller will implement the resource
       ingressClassName: ""
   
-      # -- List of ingress hosts
-      ## Argo Ingress.
-      ## Hostnames must be provided if Ingress is enabled.
-      ## Secrets must be manually created in the namespace
-      hosts: 
-        - cd.infra.gandhi.wtf
-  
       # -- Ingress TLS configuration
-      # tls:
-      #   - secretName: monkey.argocd.tls
-      #     hosts:
-      #       - argo.in.arjungandhi.com
+      tls:
+        - secretName: monkey.argocd.tls
+          hosts:
+            - argo.in.arjungandhi.com
